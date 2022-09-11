@@ -1,10 +1,16 @@
-@host = 40.127.210.206
-@port=5000
+# @host = 40.127.210.206
+@host = localhost
+@sslport=44343
+@port=41782
 
-@user={{$randomInt 1 1000}}
+# @user={{$randomInt 1 1000}}
+@user=1
+@ssluser=2
 
 ###
 GET http://{{host}}:{{port}}/shoppingcart/{{user}}
+###
+GET https://{{host}}:{{sslport}}/shoppingcart/{{ssluser}}
 
 ####
 POST http://{{host}}:{{port}}/shoppingcart/{{user}}/items
@@ -12,9 +18,19 @@ Accept: application/json
 Content-Type: application/json
 
 [1, 2]
+###
+POST https://{{host}}:{{sslport}}/shoppingcart/{{ssluser}}/items
+Accept: application/json
+Content-Type: application/json
+
+[2, 3]
+
 
 ###
 
 GET http://{{host}}:{{port}}/events?start=0&end=20
 Accept: application/json
+
+###
+GET https://{{host}}:{{sslport}}/events?start=0&end=20
 

@@ -7,8 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingCart", "ShoppingCar
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{42596CEB-252A-4779-A1C6-E4BFFBD05B9B}"
 	ProjectSection(SolutionItems) = preProject
+		examples.curl = examples.curl
 		examples.http = examples.http
-		examples.rest = examples.rest
 	EndProjectSection
 EndProject
 Global
