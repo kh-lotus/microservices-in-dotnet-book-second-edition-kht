@@ -1,7 +1,9 @@
 # @host = 40.127.210.206
-@host = localhost
+# @host = localhost
+@host = 157.56.167.84
 @sslport=44343
-@port=41782
+# @port=41782
+@port=5000
 
 # @user={{$randomInt 1 1000}}
 @user=1
