@@ -1,0 +1,221 @@
+* meta
+set PP=c:\cprojects\pp\microservices\microservices-in-dotnet-book-second-edition-kht
+* %PP%\Chapter03>az group create --name MicroservicesInDotnet --location northeurope
+{
+  "id": "/subscriptions/be8f25c4-d895-426c-9261-9b6825698862/resourceGroups/MicroservicesInDotNet",
+  "location": "northeurope",
+  "managedBy": null,
+  "name": "MicroservicesInDotNet",
+  "properties": {
+    "provisioningState": "Succeeded"
+  },
+  "tags": null,
+  "type": "Microsoft.Resources/resourceGroups"
+}
+* %PP%\Chapter03>az acr create --resource-group MicroservicesInDotnet --name tankh1 --sku Basic
+{
+  "adminUserEnabled": false,
+  "anonymousPullEnabled": false,
+  "creationDate": "2022-09-12T02:49:20.708902+00:00",
+  "dataEndpointEnabled": false,
+  "dataEndpointHostNames": [],
+  "encryption": {
+    "keyVaultProperties": null,
+    "status": "disabled"
+  },
+  "id": "/subscriptions/be8f25c4-d895-426c-9261-9b6825698862/resourceGroups/MicroservicesInDotnet/providers/Microsoft.ContainerRegistry/registries/tankh1",
+  "identity": null,
+  "location": "northeurope",
+  "loginServer": "tankh1.azurecr.io",
+  "name": "tankh1",
+  "networkRuleBypassOptions": "AzureServices",
+  "networkRuleSet": null,
+  "policies": {
+    "quarantinePolicy": {
+      "status": "disabled"
+    },
+    "retentionPolicy": {
+      "days": 7,
+      "lastUpdatedTime": "2022-09-12T03:00:55.455985+00:00",
+      "status": "disabled"
+    },
+    "trustPolicy": {
+      "status": "disabled",
+      "type": "Notary"
+    }
+  },
+  "privateEndpointConnections": [],
+  "provisioningState": "Succeeded",
+  "publicNetworkAccess": "Enabled",
+  "resourceGroup": "MicroservicesInDotnet",
+  "sku": {
+    "name": "Basic",
+    "tier": "Basic"
+  },
+  "status": null,
+  "systemData": {
+    "createdAt": "2022-09-12T02:49:20.708902+00:00",
+    "createdBy": "kwee.tan@pcc.edu",
+    "createdByType": "User",
+    "lastModifiedAt": "2022-09-12T03:00:54.813693+00:00",
+    "lastModifiedBy": "kwee.tan@pcc.edu",
+    "lastModifiedByType": "User"
+  },
+  "tags": {},
+  "type": "Microsoft.ContainerRegistry/registries",
+  "zoneRedundancy": "Disabled"
+}
+* %PP%\Chapter03>az aks create --resource-group MicroservicesInDotnet --name MicroservicesInDotnetAKSCluster --node-count 1 --enable-addons monitoring --generate-ssh-keys --attach-acr tankh1
+AAD role propagation done[############################################]  100.0000%{
+  "aadProfile": null,
+  "addonProfiles": {
+    "omsagent": {
+      "config": {
+        "logAnalyticsWorkspaceResourceID": "/subscriptions/be8f25c4-d895-426c-9261-9b6825698862/resourceGroups/DefaultResourceGroup-NEU/providers/Microsoft.OperationalInsights/workspaces/DefaultWorkspace-be8f25c4-d895-426c-9261-9b6825698862-NEU"
+      },
+      "enabled": true,
+      "identity": {
+        "clientId": "cc3fa8e5-f12b-456e-b698-a4e96bb0ca9b",
+        "objectId": "9cde2ddf-22b0-4f49-b600-0ab59a6ae0db",
+        "resourceId": "/subscriptions/be8f25c4-d895-426c-9261-9b6825698862/resourcegroups/MC_MicroservicesInDotnet_MicroservicesInDotnetAKSCluster_northeurope/providers/Microsoft.ManagedIdentity/userAssignedIdentities/omsagent-microservicesindotnetakscluster"
+      }
+    }
+  },
+  "agentPoolProfiles": [
+    {
+      "availabilityZones": null,
+      "count": 1,
+      "enableAutoScaling": null,
+      "enableEncryptionAtHost": false,
+      "enableFips": false,
+      "enableNodePublicIp": false,
+      "gpuInstanceProfile": null,
+      "kubeletConfig": null,
+      "kubeletDiskType": "OS",
+      "linuxOsConfig": null,
+      "maxCount": null,
+      "maxPods": 110,
+      "minCount": null,
+      "mode": "System",
+      "name": "nodepool1",
+      "nodeImageVersion": "AKSUbuntu-1804gen2containerd-2022.08.23",
+      "nodeLabels": null,
+      "nodePublicIpPrefixId": null,
+      "nodeTaints": null,
+      "orchestratorVersion": "1.23.8",
+      "osDiskSizeGb": 128,
+      "osDiskType": "Managed",
+      "osSku": "Ubuntu",
+      "osType": "Linux",
+      "podSubnetId": null,
+      "powerState": {
+        "code": "Running"
+      },
+      "provisioningState": "Succeeded",
+      "proximityPlacementGroupId": null,
+      "scaleSetEvictionPolicy": null,
+      "scaleSetPriority": null,
+      "spotMaxPrice": null,
+      "tags": null,
+      "type": "VirtualMachineScaleSets",
+      "upgradeSettings": null,
+      "vmSize": "Standard_DS2_v2",
+      "vnetSubnetId": null
+    }
+  ],
+  "apiServerAccessProfile": null,
+  "autoScalerProfile": null,
+  "autoUpgradeProfile": null,
+  "azurePortalFqdn": "microservi-microservicesind-be8f25-820995ed.portal.hcp.northeurope.azmk8s.io",
+  "disableLocalAccounts": null,
+  "diskEncryptionSetId": null,
+  "dnsPrefix": "Microservi-MicroservicesInD-be8f25",
+  "enablePodSecurityPolicy": null,
+  "enableRbac": true,
+  "extendedLocation": null,
+  "fqdn": "microservi-microservicesind-be8f25-820995ed.hcp.northeurope.azmk8s.io",
+  "fqdnSubdomain": null,
+  "httpProxyConfig": null,
+  "id": "/subscriptions/be8f25c4-d895-426c-9261-9b6825698862/resourcegroups/MicroservicesInDotnet/providers/Microsoft.ContainerService/managedClusters/MicroservicesInDotnetAKSCluster",
+  "identity": {
+    "principalId": "0a8808c0-7b7f-4685-a358-9d5445084b39",
+    "tenantId": "2d8ce02b-1830-4182-8463-d654c1c3585c",
+    "type": "SystemAssigned",
+    "userAssignedIdentities": null
+  },
+  "identityProfile": {
+    "kubeletidentity": {
+      "clientId": "cc3c2e19-4636-40f4-9862-db6836e9f734",
+      "objectId": "3afdb84a-5489-4afe-b63f-d6041b238d27",
+      "resourceId": "/subscriptions/be8f25c4-d895-426c-9261-9b6825698862/resourcegroups/MC_MicroservicesInDotnet_MicroservicesInDotnetAKSCluster_northeurope/providers/Microsoft.ManagedIdentity/userAssignedIdentities/MicroservicesInDotnetAKSCluster-agentpool"
+    }
+  },
+  "kubernetesVersion": "1.23.8",
+  "linuxProfile": {
+    "adminUsername": "azureuser",
+    "ssh": {
+      "publicKeys": [
+        {
+          "keyData": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCzwYuuuUWMpkYbP4fycUb2fvzvjXQYrJYiE45tmynznFqLfisE5CEESSI4h+xUrUGLXFNMY2mi2Mkp/v5QpJ3ONA9E0Zwx2NrxOfhwjwg8N+m2tMdLK7QyzIRTBlo4qN9bAlhCimgoq7qn845JblsQtJj1MjLPsFj7RqYi2cX59dx7jXZUzGDCW6+3AYI2n1GZCx5VEUoafMNcjeb26QFSgymeK5u+qa5mtw6K7QRkzy1vEa705XUhTCvfGcnouYy1Y1KLHyloXx1qpvvK3XydooMaekrTEY/AKtx2hLCDQI0LOo6JpGSoV60pdZYWPO8XzXRBYR5Z7q7/MnBTYcZx"
+        }
+      ]
+    }
+  },
+  "location": "northeurope",
+  "maxAgentPools": 100,
+  "name": "MicroservicesInDotnetAKSCluster",
+  "networkProfile": {
+    "dnsServiceIp": "10.0.0.10",
+    "dockerBridgeCidr": "172.17.0.1/16",
+    "loadBalancerProfile": {
+      "allocatedOutboundPorts": null,
+      "effectiveOutboundIps": [
+        {
+          "id": "/subscriptions/be8f25c4-d895-426c-9261-9b6825698862/resourceGroups/MC_MicroservicesInDotnet_MicroservicesInDotnetAKSCluster_northeurope/providers/Microsoft.Network/publicIPAddresses/196df9a0-dc84-43cc-a308-bd7c085e0e13",
+          "resourceGroup": "MC_MicroservicesInDotnet_MicroservicesInDotnetAKSCluster_northeurope"
+        }
+      ],
+      "idleTimeoutInMinutes": null,
+      "managedOutboundIps": {
+        "count": 1
+      },
+      "outboundIpPrefixes": null,
+      "outboundIps": null
+    },
+    "loadBalancerSku": "Standard",
+    "networkMode": null,
+    "networkPlugin": "kubenet",
+    "networkPolicy": null,
+    "outboundType": "loadBalancer",
+    "podCidr": "10.244.0.0/16",
+    "serviceCidr": "10.0.0.0/16"
+  },
+  "nodeResourceGroup": "MC_MicroservicesInDotnet_MicroservicesInDotnetAKSCluster_northeurope",
+  "podIdentityProfile": null,
+  "powerState": {
+    "code": "Running"
+  },
+  "privateFqdn": null,
+  "privateLinkResources": null,
+  "provisioningState": "Succeeded",
+  "resourceGroup": "MicroservicesInDotnet",
+  "servicePrincipalProfile": {
+    "clientId": "msi",
+    "secret": null
+  },
+  "sku": {
+    "name": "Basic",
+    "tier": "Free"
+  },
+  "tags": null,
+  "type": "Microsoft.ContainerService/ManagedClusters",
+  "windowsProfile": null
+}
+* %PP%\Chapter03>az aks get-credentials --resource-group MicroservicesInDotnet --name MicroservicesInDotnetAKSCluster
+Merged "MicroservicesInDotnetAKSCluster" as current context in C:\Users\tankh\.kube\config
+* %PP%/Chapter03>kubectl get nodes
+NAME             STATUS   ROLES                  AGE    VERSION
+docker-desktop   Ready    control-plane,master   4h4m   v1.22.5
+
+
+
