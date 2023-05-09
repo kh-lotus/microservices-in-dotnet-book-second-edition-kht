@@ -29,7 +29,7 @@ namespace LoyaltyProgramUnitTests
     }
 
     [Fact]
-    public async Task respond_not_fount_when_queried_for_unregistered_user()
+    public async Task respond_not_found_when_queried_for_unregistered_user()
     {
       var actual = await this.sut.GetAsync("/users/1000");
       Assert.Equal(HttpStatusCode.NotFound, actual.StatusCode);
@@ -46,6 +46,8 @@ namespace LoyaltyProgramUnitTests
         await JsonSerializer.DeserializeAsync<LoyaltyProgramUser>(
           await registrationResponse.Content.ReadAsStreamAsync(),
           new JsonSerializerOptions {PropertyNameCaseInsensitive = true});
+      // Make sure registration succeeded
+      Assert.Equal(HttpStatusCode.OK, registrationResponse.StatusCode);
 
       var actual = await this.sut.GetAsync($"/users/{newUser?.Id}");
       var actualUser = JsonSerializer.Deserialize<LoyaltyProgramUser>(await actual.Content.ReadAsStringAsync(),
